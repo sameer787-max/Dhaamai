@@ -61,7 +61,7 @@ export default function RevenueChart() {
   animate={inView ? { opacity: 1, y: 0 } : {}}
   transition={{ duration: 0.6, ease: "easeOut" }}
   className="
-    bg-white shadow-md rounded-xl border  mt-8 md-mt-3  border-gray-400
+    bg-white shadow-md rounded-xl   mt-8 md-mt-3  
     p-4
     [width:clamp(280px,20vw,320px)]   
     [height:clamp(180px,25vw,250px)]  

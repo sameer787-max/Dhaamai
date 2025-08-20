@@ -26,7 +26,7 @@ export default function CustomerCard() {
       className="
         flex flex-col mb-3 justify-between
         p-[clamp(16px,2.5vw,28px)]
-        rounded-2xl shadow-md border bg-white
+        rounded-2xl shadow-md  bg-white
         [width:clamp(280px,35vw,380px)]
         [height:clamp(280px,35vw,340px)]
       "
