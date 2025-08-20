@@ -15,18 +15,72 @@ import {
 } from "react-icons/fa";
 import { SiFigma, SiMailchimp } from "react-icons/si";
 
-// animation helper
+// Animation helper
 const appear = (delay = 0, inView = false) => ({
   initial: { opacity: 0, scale: 0.6 },
   animate: inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.6 },
   transition: { duration: 0.4, delay },
 });
 
+// --- Node Component (inside SVG) ---
+const Node = ({ x, y, color, icon, delay = 0, size = 50, inView }) => (
+  <motion.foreignObject
+    {...appear(delay, inView)}
+    x={x - size / 2}
+    y={y - size / 2}
+    width={size}
+    height={size}
+  >
+    <div
+      className="rounded-full bg-white shadow-md flex items-center justify-center"
+      style={{
+        width: size,
+        height: size,
+        color,
+        fontSize: size * 0.4,
+      }}
+    >
+      {icon}
+    </div>
+  </motion.foreignObject>
+);
+
+// --- Line Components ---
+const StepLine = ({ from, to, delay = 0, inView }) => {
+  const midX = (from.x + to.x) / 2;
+  const points = `${from.x},${from.y} ${midX},${from.y} ${midX},${to.y} ${to.x},${to.y}`;
+  return (
+    <motion.polyline
+      points={points}
+      fill="none"
+      stroke="#D1D5DB"
+      strokeWidth={1.5}
+      initial={{ pathLength: 0 }}
+      animate={{ pathLength: inView ? 1 : 0 }}
+      transition={{ duration: 0.4, delay }}
+    />
+  );
+};
+
+const StraightLine = ({ from, to, delay = 0, inView }) => (
+  <motion.line
+    x1={from.x}
+    y1={from.y}
+    x2={to.x}
+    y2={to.y}
+    stroke="#D1D5DB"
+    strokeWidth={1.5}
+    initial={{ pathLength: 0 }}
+    animate={{ pathLength: inView ? 1 : 0 }}
+    transition={{ duration: 0.4, delay }}
+  />
+);
+
 export default function IntegrationSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { margin: "-50% 0px -50% 0px" });
 
-  // Brand icons with colors
+  // Brand icons
   const icons = {
     figma: { icon: <SiFigma />, color: "#F24E1E" },
     twitter: { icon: <FaTwitter />, color: "#1DA1F2" },
@@ -39,7 +93,7 @@ export default function IntegrationSection() {
     snapchat: { icon: <FaSnapchat />, color: "#FFFC00" },
   };
 
-  // --- Positions (based on 1000×500 virtual canvas) ---
+  // --- Positions (1000×500 virtual canvas) ---
   const center = { x: 500, y: 250 };
 
   const left3 = [
@@ -64,71 +118,11 @@ export default function IntegrationSection() {
     { ...icons.slack, x: 850, y: 350, delay: 1.2 },
   ];
 
-  // --- Components ---
-  const Node =  ({ x, y, color, icon, delay = 0, size = 40, smSize }) => (
-  <motion.div
-    {...appear(delay, inView)}
-    className="absolute rounded-full bg-white shadow-md flex items-center justify-center"
-    style={{
-      width: size,
-      height: size,
-      left: `calc(${(x / 1000) * 100}% - ${size / 2}px)`,
-      top: `calc(${(y / 500) * 100}% - ${size / 2}px)`,
-      color,
-      fontSize: size * 0.35,
-    }}
-  >
-    <span className={`sm:hidden`} style={{ fontSize: size * 0.35 }}>
-      {icon}
-    </span>
-    {smSize && (
-      <span
-        className={`hidden sm:flex`}
-        style={{
-          width: smSize,
-          height: smSize,
-          fontSize: smSize * 0.35,
-        }}
-      >
-        {icon}
-      </span>
-    )}
-  </motion.div>
-);
-
-
-  const StepLine = ({ from, to, delay = 0 }) => {
-    const midX = (from.x + to.x) / 2;
-    const points = `${from.x},${from.y} ${midX},${from.y} ${midX},${to.y} ${to.x},${to.y}`;
-    return (
-      <motion.polyline
-        points={points}
-        fill="none"
-        stroke="#D1D5DB"
-        strokeWidth={1.5}
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: inView ? 1 : 0 }}
-        transition={{ duration: 0.4, delay }}
-      />
-    );
-  };
-
-  const StraightLine = ({ from, to, delay = 0 }) => (
-    <motion.line
-      x1={from.x}
-      y1={from.y}
-      x2={to.x}
-      y2={to.y}
-      stroke="#D1D5DB"
-      strokeWidth={1.5}
-      initial={{ pathLength: 0 }}
-      animate={{ pathLength: inView ? 1 : 0 }}
-      transition={{ duration: 0.4, delay }}
-    />
-  );
-
   return (
-    <section ref={ref} className="w-full bg-gray-50 flex flex-col items-center py-4 sm:py-8">
+    <section
+      ref={ref}
+      className="w-full bg-gray-50 flex flex-col items-center py-6 sm:py-10"
+    >
       <h5 className="text-sm sm:text-lg text-[#7C43DF] text-center mb-1 sm:mb-2">
         our primary integration
       </h5>
@@ -139,46 +133,90 @@ export default function IntegrationSection() {
         50+ integrations
       </h1>
 
-      {/* responsive wrapper */}
-      <div className="relative w-full max-w-[800px] sm:max-w-[1000px] aspect-[2/1] mx-auto">
-        <svg
-          viewBox="0 0 1000 500"
-          className="absolute top-0 left-0 w-full h-full"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          {left3.map((n) => (
-            <StepLine key={`c-l3-${n.color}`} from={center} to={n} delay={n.delay - 0.2} />
-          ))}
-          {right3.map((n) => (
-            <StepLine key={`c-r3-${n.color}`} from={center} to={n} delay={n.delay - 0.2} />
-          ))}
-          <StraightLine from={left3[0]} to={left2[0]} delay={left2[0].delay - 0.2} />
-          <StraightLine from={left3[2]} to={left2[1]} delay={left2[1].delay - 0.2} />
-          <StraightLine from={right3[0]} to={right2[0]} delay={right2[0].delay - 0.2} />
-          <StraightLine from={right3[2]} to={right2[1]} delay={right2[1].delay - 0.2} />
-        </svg>
+      {/* SVG diagram (everything scales together) */}
+      <svg
+        viewBox="0 0 1000 500"
+        className="w-full max-w-[900px] h-auto my-6"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        {/* Lines */}
+        {left3.map((n) => (
+          <StepLine
+            key={`c-l3-${n.color}`}
+            from={center}
+            to={n}
+            delay={n.delay - 0.2}
+            inView={inView}
+          />
+        ))}
+        {right3.map((n) => (
+          <StepLine
+            key={`c-r3-${n.color}`}
+            from={center}
+            to={n}
+            delay={n.delay - 0.2}
+            inView={inView}
+          />
+        ))}
+        <StraightLine
+          from={left3[0]}
+          to={left2[0]}
+          delay={left2[0].delay - 0.2}
+          inView={inView}
+        />
+        <StraightLine
+          from={left3[2]}
+          to={left2[1]}
+          delay={left2[1].delay - 0.2}
+          inView={inView}
+        />
+        <StraightLine
+          from={right3[0]}
+          to={right2[0]}
+          delay={right2[0].delay - 0.2}
+          inView={inView}
+        />
+        <StraightLine
+          from={right3[2]}
+          to={right2[1]}
+          delay={right2[1].delay - 0.2}
+          inView={inView}
+        />
 
         {/* Central node */}
         <Node
           x={center.x}
           y={center.y}
           color="#7C3AED"
-          icon={<span className="text-2xl sm:text-4xl">D</span>}
+          icon={<span className="text-xl sm:text-3xl">D</span>}
           delay={0.2}
-          size={70} // reduced central size
+          size={70}
+          inView={inView}
         />
-        {left3.map((n, i) => <Node key={`l3-${i}`} {...n} size={45} />)}
-        {right3.map((n, i) => <Node key={`r3-${i}`} {...n} size={45} />)}
-        {left2.map((n, i) => <Node key={`l2-${i}`} {...n} size={40} />)}
-        {right2.map((n, i) => <Node key={`r2-${i}`} {...n} size={40} />)}
-      </div>
 
-      <div className="px-3 sm:px-4 max-w-xl sm:max-w-2xl text-center mt-3 sm:mt-4 text-sm sm:text-base">
+        {/* Other nodes */}
+        {left3.map((n, i) => (
+          <Node key={`l3-${i}`} {...n} size={45} inView={inView} />
+        ))}
+        {right3.map((n, i) => (
+          <Node key={`r3-${i}`} {...n} size={45} inView={inView} />
+        ))}
+        {left2.map((n, i) => (
+          <Node key={`l2-${i}`} {...n} size={40} inView={inView} />
+        ))}
+        {right2.map((n, i) => (
+          <Node key={`r2-${i}`} {...n} size={40} inView={inView} />
+        ))}
+      </svg>
+
+      <div className="px-4 sm:px-6 max-w-xl sm:max-w-2xl text-center mt-3 sm:mt-4 text-sm sm:text-base">
         <p>
-          Gain a competitive edge with our SEO optimization tools, ensuring your website
+          Gain a competitive edge with our SEO optimization tools, ensuring your
+          website
         </p>
         <p className="mb-3">
-          ranks higher, attracts more visitors, and generates leads like never before
+          ranks higher, attracts more visitors, and generates leads like never
+          before
         </p>
       </div>
 
