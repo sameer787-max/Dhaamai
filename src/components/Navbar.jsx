@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center px-6 lg:px-12 py-4">
         {/* Logo */}
         <div className="flex items-center gap-2 text-xl font-bold">
-          <img src="/Vector.svg" alt="Logo" className="h-8 w-auto" />
+          <img src="/Dhaamai/Vector.svg" alt="Logo" className="h-8 w-auto" />
         </div>
 
         {/* Desktop Nav */}

@@ -25,9 +25,9 @@ export default function OnboardingScreen() {
         <div className="flex justify-between flex-row  items-center px-4 py-2 text-xs text-gray-800">
           <span className="font-semibold">9:41</span>
           <div className="flex items-center space-x-1">
-              <Image src="/wifi.svg" alt="WiFi" width={14} height={14} />
-            <Image src="/network.svg" alt="WiFi" width={14} height={14} />
-            <Image src="/battery.svg" alt="Battery" width={10} height={10} />
+              <Image src="/Dhaamai/wifi.svg" alt="WiFi" width={14} height={14} />
+            <Image src="/Dhaamai/network.svg" alt="WiFi" width={14} height={14} />
+            <Image src="/Dhaamai/battery.svg" alt="Battery" width={10} height={10} />
           </div>
         </div>
 
@@ -35,7 +35,7 @@ export default function OnboardingScreen() {
         <div className="flex flex-col items-center gap-0.5 flex-1 px-5 py-5">
           {/* Logo */}
           <div className="flex items-center space-x-2 mt-1">
-            <Image src="/Vector.svg" alt="Logo" width={80} height={50} />
+            <Image src="/Dhaamai/Vector.svg" alt="Logo" width={80} height={50} />
            
           </div>
 
@@ -47,7 +47,7 @@ export default function OnboardingScreen() {
             className="mt-4"
           >
             <Image
-              src="/mobile.png"
+              src="/Dhaamai/mobile.png"
               alt="Buy Grocery Illustration"
               width={180}
               height={70}

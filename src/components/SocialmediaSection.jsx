@@ -48,16 +48,13 @@ export default function TestimonialsCarousel() {
             style={{
                 backgroundImage: "url('/websvg2.svg')",
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "100% auto", 
+                backgroundSize: "100% auto",
                 backgroundPosition: "top center",
-                
+
             }}
         >
-            
-
-
             <div className="relative z-10 max-w-6xl mx-auto px-6">
-             
+
                 <div className="text-center mb-16">
                     <p className="text-[#7C43DF] font-medium">Our Customers</p>
                     <h2 className="text-5xl  text-gray-900 mt-2">
@@ -73,7 +70,7 @@ export default function TestimonialsCarousel() {
                         transition={{
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 25, // adjust speed here
+                            duration: 25,
                             ease: "linear",
                         }}
                     >

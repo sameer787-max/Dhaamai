@@ -16,7 +16,7 @@ export default function Hero() {
     >
       {/* Purple Glow */}
       <div className="absolute inset-0 flex justify-center">
-        <div className="w-[85vw] sm:w-[65vw] md:w-[50vw] h-[280px] sm:h-[350px] md:h-[400px] mt-12 sm:mt-16 md:mt-20 bg-[#b299da] rounded-full blur-3xl opacity-15"></div>
+   
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-2 sm:px-6">

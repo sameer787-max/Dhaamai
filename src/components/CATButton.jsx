@@ -3,7 +3,7 @@
 export default function CTAButton({
   children,
   variant = "primary",
-  fullWidth = false, // optional prop for full-width button on mobile
+  fullWidth = false,
 }) {
   const base =
     "rounded-full font-medium transition-colors duration-200 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4";
