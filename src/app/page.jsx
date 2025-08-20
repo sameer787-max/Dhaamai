@@ -15,7 +15,7 @@ import TestimonialsCarousel from "@/components/SocialmediaSection";
 import FreeTrialSection from "@/components/TrailSeciton";
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-300">
+    <div className="min-h-screen overflow-x-hidden bg-gradient-to-b from-white to-gray-300">
       <Navbar />
       <Hero />
 
