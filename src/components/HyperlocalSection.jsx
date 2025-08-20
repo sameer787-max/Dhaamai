@@ -79,7 +79,7 @@ export default function HyperlocalSection() {
             },
           },
         }}
-        className="grid grid-cols-1 overflow-auto h-[40vh] pb-5  md:grid-cols-2 gap-6 bg-white rounded-2xl shadow-sm p-8"
+        className="grid grid-cols-1 overflow-auto sm:overflow-hidden  sm:h-[500px]  h-[40vh] pb-5  md:grid-cols-2 gap-6 bg-white rounded-2xl shadow-sm p-8"
       >
         {features.map((item, i) => (
           <motion.div
