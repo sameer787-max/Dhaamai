@@ -65,22 +65,37 @@ export default function IntegrationSection() {
   ];
 
   // --- Components ---
-  const Node = ({ x, y, color, icon, delay = 0, size = 50 }) => (
-    <motion.div
-      {...appear(delay, inView)}
-      className="absolute rounded-full bg-white shadow-md flex items-center justify-center"
-      style={{
-        width: size,
-        height: size,
-        left: `calc(${(x / 1000) * 100}% - ${size / 2}px)`,
-        top: `calc(${(y / 500) * 100}% - ${size / 2}px)`,
-        color,
-        fontSize: size * 0.35, // icons shrink with node
-      }}
-    >
+  const Node =  ({ x, y, color, icon, delay = 0, size = 40, smSize }) => (
+  <motion.div
+    {...appear(delay, inView)}
+    className="absolute rounded-full bg-white shadow-md flex items-center justify-center"
+    style={{
+      width: size,
+      height: size,
+      left: `calc(${(x / 1000) * 100}% - ${size / 2}px)`,
+      top: `calc(${(y / 500) * 100}% - ${size / 2}px)`,
+      color,
+      fontSize: size * 0.35,
+    }}
+  >
+    <span className={`sm:hidden`} style={{ fontSize: size * 0.35 }}>
       {icon}
-    </motion.div>
-  );
+    </span>
+    {smSize && (
+      <span
+        className={`hidden sm:flex`}
+        style={{
+          width: smSize,
+          height: smSize,
+          fontSize: smSize * 0.35,
+        }}
+      >
+        {icon}
+      </span>
+    )}
+  </motion.div>
+);
+
 
   const StepLine = ({ from, to, delay = 0 }) => {
     const midX = (from.x + to.x) / 2;

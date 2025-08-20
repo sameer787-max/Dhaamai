@@ -98,7 +98,7 @@ export default function PlatformSection() {
         >
           <div className=" relative top-1">
             <Image
-              src="/iphoneframe.png"
+              src="/Dhaamai/iphoneframe.png"
               alt="Mobile App" 
               width={260}
               height={450}
@@ -106,7 +106,7 @@ export default function PlatformSection() {
           
 
             />
-            <img src="/mobile.png" className="absolute h-92 top-16 left-3 w-57 " alt="" />
+            <img src="/Dhaamai/mobile.png" className="absolute h-92 top-16 left-3 w-57 " alt="" />
           </div>
         </motion.div>
       </div>

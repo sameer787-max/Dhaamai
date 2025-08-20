@@ -7,27 +7,27 @@ import Image from "next/image";
 const features = [
   {
     title: "Lightning-fast ordering & delivery",
-    img: "/dhashbord.png",
+    img: "/Dhaamai/dhashbord.png",
   },
   {
     title: "Local taxes, fees & compliance ready",
-    img: "/progressbar.png",
+    img: "/Dhaamai/progressbar.png",
   },
   {
     title: "AI-powered auto-dispatching",
-    img: "/growthchart.png",
+    img: "/Dhaamai/growthchart.png",
   },
   {
     title: "Multi-location, multi-vendor support",
-    img: "/growthchart.png",
+    img: "/Dhaamai/growthchart.png",
   },
   {
     title: "Fully white-labeled apps & domains",
-    img: "/loginscreen.png",
+    img: "/Dhaamai/loginscreen.png",
   },
   {
     title: "Customizable regional themes & content",
-    img: "/growthchart.png",
+    img: "/Dhaamai/growthchart.png",
   },
 ];
 

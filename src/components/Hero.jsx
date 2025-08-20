@@ -8,7 +8,7 @@ export default function Hero() {
     <section
       className="relative overflow-hidden text-center px-4 sm:px-6 mt-4 py-16 sm:py-20 md:py-28 bg-cover bg-center"
       style={{
-        backgroundImage: "url('/websvg.svg')",
+        backgroundImage: "url('/Dhaamai/websvg.svg')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover", 
         backgroundPosition: "top center",

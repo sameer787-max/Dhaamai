@@ -7,7 +7,7 @@ export default function FreeTrialSection() {
     <section
       className="relative w-full py-8 md:py-28 bg-white"
       style={{
-        backgroundImage: "url('/websvg2.svg')",
+        backgroundImage: "url('/Dhaamai/websvg2.svg')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% auto",
         backgroundPosition: "center",
