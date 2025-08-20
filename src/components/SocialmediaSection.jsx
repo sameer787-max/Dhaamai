@@ -68,7 +68,7 @@ export default function TestimonialsCarousel() {
     <section
       className="relative w-full overflow-hidden text-center px-6 bg-gray-100 py-12 md:py-20 bg-cover bg-center"
       style={{
-        backgroundImage: "url('/websvg2.svg')",
+        backgroundImage: "url('/Dhaamai/websvg2.svg')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% auto",
         backgroundPosition: "top center",
